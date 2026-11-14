@@ -5,6 +5,8 @@ import os
 
 from mistralai.client import Mistral
 
+from mistral_env import load_env
+
 
 def encode_local_file(path):
     mime = mimetypes.guess_type(path)[0] or "application/octet-stream"
@@ -17,6 +19,7 @@ def main():
     parser.add_argument("source", help="Path to a local PDF/image or a public URL")
     parser.add_argument("-o", "--output", help="Write extracted markdown to this file instead of stdout")
     args = parser.parse_args()
+    load_env()
 
     if args.source.startswith(("http://", "https://")):
         document = {"type": "document_url", "document_url": args.source}

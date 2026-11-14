@@ -6,8 +6,28 @@ Working examples for Mistral's document and audio APIs using the V2 Python SDK.
 
 ```bash
 pip install -r requirements.txt
-export MISTRAL_API_KEY="your-api-key"   # get one at https://console.mistral.ai/api-keys
 ```
+
+Provide your key from [Studio → API keys](https://console.mistral.ai/api-keys) in **one** of these ways — never paste it into chat or commit it:
+
+```bash
+export MISTRAL_API_KEY="your-api-key"        # shell env var
+```
+
+or create a `.env` file next to the scripts (already gitignored):
+
+```bash
+echo 'MISTRAL_API_KEY=your-api-key' > .env  # one line, in this directory only
+```
+
+The scripts check the environment first, then fall back to `.env`.
+
+### On a phone
+
+- **GitHub Codespaces**: open the repo on github.com → Code → Create codespace, add `MISTRAL_API_KEY` as a Codespaces secret (repo Settings → Secrets → Codespaces), then run the scripts in the terminal — the key never enters chat or the repo.
+- **Google Colab**: clone the repo in a notebook, store the key under Colab's Secrets (left sidebar key icon) and read it with `from google.colab import userdata; userdata.get("MISTRAL_API_KEY")`.
+- **Termux (Android) / local clone**: clone the repo and create the `.env` file above with a text editor.
+- **No code at all**: try the endpoints in the API playground in [Studio](https://console.mistral.ai) while logged in.
 
 ## OCR — extract markdown from a PDF or image
 

@@ -4,6 +4,8 @@ import os
 
 from mistralai.client import Mistral
 
+from mistral_env import load_env
+
 
 def main():
     parser = argparse.ArgumentParser(description="Synthesize speech with Voxtral TTS")
@@ -12,6 +14,7 @@ def main():
     parser.add_argument("--model", default="voxtral-mini-tts-3-0")
     parser.add_argument("--voice", default="gb_jane_neutral", help="Preset voice_id")
     args = parser.parse_args()
+    load_env()
 
     client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
     response = client.audio.speech.complete(
